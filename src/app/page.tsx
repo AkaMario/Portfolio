@@ -7,7 +7,7 @@ import { Github, Linkedin } from "lucide-react";
 import {Button} from "@/components/Button";
 import TimeLine from "@/components/TimeLine";
 import { LogoLoop } from "@/components/LogoLoop";
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript, SiAstro, SiPostgresql, SiVite, SiPython, SiGit, SiNodedotjs, SiFigma } from 'react-icons/si';
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiJavascript, SiAstro, SiPostgresql, SiVite, SiPython, SiGit, SiNodedotjs, SiFigma, SiDocker} from 'react-icons/si';
 import DesignCard from "@/components/DesingCard";
 
 const techLogos = [
@@ -23,6 +23,7 @@ const techLogos = [
   { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
   { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
   { node: <SiFigma />, title: "Figma", href: "https://www.figma.com" },
+  { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
 ];
 
 export default function Home() {
@@ -52,9 +53,10 @@ export default function Home() {
       </div>
 
       <div className="flex h-full items-center justify-center font-sans md:px-32">
-        <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16sm:items-start gap-7">
+        <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16sm:items-start gap-7 pb-24">
           
           {/* Section de titulo y botones */}
+          <section>
           <section className="w-full flex flex-col items-center sm:items-start">
 
             <div className="flex flex-col gap-6 items-start sm:w-full md:w-115">
@@ -131,9 +133,10 @@ export default function Home() {
                   </a>
                   </div>
           </section>
+          </section>
 
           {/* Section de proyectos */}
-          <section className="w-full mt-20 md:mt-20 bg-black/40 rounded-2xl">
+          <section id="projects" className="w-full mt-20 md:mt-20 bg-black/40 rounded-2xl">
             <div className="w-full h-full p-6 rounded-lg sm:w-full">
               <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">Projects</h2>
               <p className="text-1xl mb-6 text-gray-500">Here are the projects I&apos;ve used to learn about a technology or that I&apos;ve been paid to do.</p>
@@ -143,9 +146,9 @@ export default function Home() {
             </div>
           </section> 
 
+          {/* Basic horizontal loop */}
           <section className="w-full mt-20 md:mt-20">
             <div style={{ height: '100px', position: 'relative', overflow: 'hidden'}}>
-              {/* Basic horizontal loop */}
               <LogoLoop
                 logos={techLogos}
                 speed={60}
@@ -163,7 +166,7 @@ export default function Home() {
           </section>
 
           {/* Section de desings */}
-          <section className="w-full mt-20 md:mt-20 bg-black/40 rounded-2xl">
+          <section id="designs" className="w-full mt-20 md:mt-20 bg-black/40 rounded-2xl">
             <div className="w-full h-full p-6 rounded-lg sm:w-full">
               <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">Designs</h2>
               <p className="text-1xl mb-6 text-gray-500">Here are the designs I&apos;ve created to showcase my creativity and design skills.</p>
@@ -174,7 +177,7 @@ export default function Home() {
           </section> 
 
           {/* Section de timeline */}
-          <section className="w-full bg-black/40 rounded-2xl sm:hidden md:block mt-20 md:mt-20">
+          <section id="experience" className="w-full bg-black/40 rounded-2xl sm:hidden md:block mt-20 md:mt-20">
             <div className="w-full h-full p-6 rounded-lg sm:w-full">
               <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">Experience & Education</h2>
               <p className="text-1xl mb-6 text-gray-500">A timeline of my professional experience and educational background.</p>
@@ -183,10 +186,7 @@ export default function Home() {
                 </div>
             </div>
           </section>
-          
-          
- 
-
+        
           {/* Section de footer */}
           <section>
             <footer>

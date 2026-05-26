@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { type CSSProperties, useEffect, useRef, useState } from 'react';
 
 interface TimelineItem {
   title: string;
@@ -11,6 +11,14 @@ interface TimelineItem {
 }
 
 const timelineData: TimelineItem[] = [
+  {
+    title: 'Web Developer in fundacion universitaria Tecnologico Comfenalco',
+    subtitle: 'intern',
+    description: 'I have worked as a project leader and software architect for the university, integrating new technologies and development approaches to improve the efficiency and quality of the institutions technology projects.',
+    date: '2026 - Present',
+    type: 'work',
+
+  },
   {
     title: 'Web Developer and Designer',
     subtitle: 'DNAMYK',
@@ -49,12 +57,16 @@ const timelineData: TimelineItem[] = [
 ];
 
 export default function TimeLine() {
-  const [visible, setVisible] = useState<boolean[]>(() =>
-    Array(timelineData.length).fill(false)
-  );
+  const itemCount = timelineData.length;
+  const timelineStyle = {
+    '--timeline-items': itemCount,
+  } as CSSProperties;
+
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(() => new Set());
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    const currentItems = itemsRef.current.slice(0, itemCount);
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -63,10 +75,10 @@ export default function TimeLine() {
           const index = itemsRef.current.findIndex((el) => el === entry.target);
           if (index === -1) return;
 
-          setVisible((prev) => {
-            if (prev[index]) return prev;
-            const next = [...prev];
-            next[index] = true;
+          setVisibleItems((prev) => {
+            if (prev.has(index)) return prev;
+            const next = new Set(prev);
+            next.add(index);
             return next;
           });
 
@@ -78,17 +90,20 @@ export default function TimeLine() {
       }
     );
 
-    itemsRef.current.slice(0, timelineData.length).forEach((el) => {
+    currentItems.forEach((el) => {
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [itemCount]);
 
   return (
     <section className="py-12 sm:py-16 px-3 sm:px-4 pb-32">
       <div className="w-full max-w-3xl lg:max-w-4xl mx-auto">
-        <div className="relative px-2 sm:px-0">
+        <div
+          className="relative px-2 sm:px-0 min-h-[calc(var(--timeline-items)*10rem)] sm:min-h-[calc(var(--timeline-items)*12rem)]"
+          style={timelineStyle}
+        >
           {/* Vertical line - Desktop */}
           <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-linear-to-b from-gray-600 to-gray-900 transform -translate-x-1/2 hidden sm:block" />
 
@@ -104,7 +119,7 @@ export default function TimeLine() {
                   itemsRef.current[index] = el;
                 }}
                 className={`transform transition-all duration-700 ${
-                  visible[index]
+                  visibleItems.has(index)
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-8'
                 }`}

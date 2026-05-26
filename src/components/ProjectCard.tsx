@@ -7,6 +7,15 @@ import { Github, ExternalLink } from 'lucide-react';
 function ProjectCard() {
     const proyectos = [
         {
+            titulo: 'Urbanest IA',
+            descripcion: 'Development and design of UrbanestIA, a Colombian proptech platform that uses artificial intelligence to optimize the search, analysis and comparison of real estate investments.',
+            tecnologias: ['React', 'API', 'Docker', 'Python','Scrapy', 'Ollama', 'Redis'],
+            imagen: '/Calculadora-simplex.png',
+            video: undefined,
+            github: 'https://github.com/AkaMario/Scraper-Urbanest-IA',
+            demo: 'https://youtu.be/KcoUACkpNy4',
+        },
+        {
             titulo: "Graphing method calculator",
             descripcion: "Calculator and graphing tool used in operations research to solve linear equations.",
             tecnologias: ["React", "TypeScript", "Tailwind CSS", "Math"],
@@ -24,6 +33,7 @@ function ProjectCard() {
             github: 'https://github.com/AkaMario/MiniPOS',
             demo: 'https://akamario.github.io/MiniPOS/',
         },
+
         // {
         //     titulo: "Search Film",
         //     descripcion: "Developed and designed this website to search for movies and series with autoupdate using the TMDB API and React",
@@ -33,14 +43,6 @@ function ProjectCard() {
         //     github: "https://github.com/AkaMario/SearchFilm/",
         //     demo: "https://akamario.github.io/SearchFilm/",
         // },
-        {
-            titulo: 'Simplex Calculator',
-            descripcion: 'Simplex calculator built with React, Tailwind CSS, TypeScript that consumes a calculation API made in Django, used in Operations Research to solve linear programming problems.',
-            tecnologias: ['React', 'API', 'TypeScript', 'Django'],
-            imagen: '/Calculadora-simplex.png',
-            video: undefined,
-            github: 'https://github.com/AkaMario/Calculadora-Simplex',
-        },
 
         {
             titulo: "DNAMYK",
