@@ -10,7 +10,7 @@ function ProjectCard() {
             titulo: 'Urbanest IA',
             descripcion: 'Development and design of UrbanestIA, a Colombian proptech platform that uses artificial intelligence to optimize the search, analysis and comparison of real estate investments.',
             tecnologias: ['React', 'API', 'Docker', 'Python','Scrapy', 'Ollama', 'Redis'],
-            imagen: '/Calculadora-simplex.png',
+            imagen: '/Urbanest-IA.png',
             video: undefined,
             github: 'https://github.com/AkaMario/Scraper-Urbanest-IA',
             demo: 'https://youtu.be/KcoUACkpNy4',
