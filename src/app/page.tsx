@@ -1,7 +1,7 @@
 import TextType from "@/components/TextType";
 import PixelBlast from "@/components/PixelBlast";
 import ProjectCard from "@/components/ProjectCard";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/Button";
 import TimeLine from "@/components/TimeLine";
 import { LogoLoop } from "@/components/LogoLoop";
@@ -26,8 +26,16 @@ import {
 import DesignCard from "@/components/DesingCard";
 
 export const AzureIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-    <path fill="currentColor" d="M12.903 4.032L7 9.13l-5 9.065h4.548zm.839 1.226l-2.516 7.097L16 18.387l-9.355 1.58H22z" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill="currentColor"
+      d="M12.903 4.032L7 9.13l-5 9.065h4.548zm.839 1.226l-2.516 7.097L16 18.387l-9.355 1.58H22z"
+    />
   </svg>
 );
 
@@ -123,28 +131,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-20 flex flex-wrap items-center justify-center md:gap-22 sm:gap-6 gap-4">
-                {/* <a href="https://github.com/AkaMario">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white-600 text-white-600 hover:bg-blue-600 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer"
-                  >
-                    <Github className="w-5 h-5 mr-2" />
-                    GitHub
-                  </Button>
-                </a>
-                <a href="https://www.linkedin.com/in/mario-uparela-posada-18661632b/">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white-600 text-white-600 hover:bg-purple-500 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer"
-                  >
-                    <Linkedin className="w-5 h-5 mr-2" />
-                    LinkedIn
-                  </Button>
-                </a> */}
-              </div>
+              <div className="mt-20 flex flex-wrap items-center justify-center md:gap-22 sm:gap-6 gap-4"></div>
             </section>
             <section className="md:p-0 px-6 flex flex-col gap-6">
               <div className="md:w-full ">
@@ -172,6 +159,15 @@ export default function Home() {
                     className="border-white-600 text-white-600 hover:bg-purple-500 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer rounded-full"
                   >
                     <Linkedin className="w-6 h-6" />
+                  </Button>
+                </a>
+                <a href="mailto:mariouppo1@gmail.com?subject=Mario.Dev%20portafolio&body=Hola%2C%20vi%20tu%20portafolio%2C%20me%20interesa.">
+                  <Button
+                    variant="circleOutline"
+                    size="lg"
+                    className="border-white-600 text-white-600 hover:bg-green-500 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer rounded-full"
+                  >
+                    <Send className="w-6 h-6" />
                   </Button>
                 </a>
               </div>

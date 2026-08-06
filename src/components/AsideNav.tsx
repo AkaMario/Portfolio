@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Code2, Paintbrush, GraduationCap } from "lucide-react";
+import { Code2, Brush, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const sections = [
   { id: "projects", label: "Projects", Icon: Code2 },
-  { id: "designs", label: "Designs", Icon: Paintbrush },
+  { id: "designs", label: "Designs", Icon: Brush },
   { id: "experience", label: "Experience", Icon: GraduationCap },
 ];
 
