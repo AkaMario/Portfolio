@@ -174,6 +174,25 @@ export default function Home() {
             </section>
           </section>
 
+          {/* Section de timeline */}
+          <section
+            id="experience"
+            className="w-full bg-black/40 rounded-2xl sm:hidden md:block mt-20 md:mt-20"
+          >
+            <div className="w-full h-full p-6 rounded-lg sm:w-full">
+              <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">
+                Experience & Education
+              </h2>
+              <p className="text-1xl mb-6 text-gray-500">
+                A timeline of my professional experience and educational
+                background.
+              </p>
+              <div>
+                <TimeLine />
+              </div>
+            </div>
+          </section>
+
           {/* Section de proyectos */}
           <section
             id="projects"
@@ -232,25 +251,6 @@ export default function Home() {
               </p>
               <div className="">
                 <DesignCard />
-              </div>
-            </div>
-          </section>
-
-          {/* Section de timeline */}
-          <section
-            id="experience"
-            className="w-full bg-black/40 rounded-2xl sm:hidden md:block mt-20 md:mt-20"
-          >
-            <div className="w-full h-full p-6 rounded-lg sm:w-full">
-              <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">
-                Experience & Education
-              </h2>
-              <p className="text-1xl mb-6 text-gray-500">
-                A timeline of my professional experience and educational
-                background.
-              </p>
-              <div>
-                <TimeLine />
               </div>
             </div>
           </section>

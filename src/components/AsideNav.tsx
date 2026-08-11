@@ -5,9 +5,9 @@ import { Code2, Brush, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const sections = [
+  { id: "experience", label: "Experience", Icon: GraduationCap },
   { id: "projects", label: "Projects", Icon: Code2 },
   { id: "designs", label: "Designs", Icon: Brush },
-  { id: "experience", label: "Experience", Icon: GraduationCap },
 ];
 
 export default function AsideNav() {
