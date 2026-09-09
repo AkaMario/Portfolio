@@ -575,11 +575,17 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         const { fx, fy, w, h } = mapToPixels(e);
         touch.addTouch({ x: fx / w, y: fy / h });
       };
-      renderer.domElement.addEventListener('pointerdown', onPointerDown, {
-        passive: true
+      // The canvas is used as a background, so it can sit behind other page
+      // elements and never become the pointer-event target. Listening on the
+      // window keeps the effect responsive while preserving normal interaction
+      // with links and buttons in the foreground.
+      window.addEventListener('pointerdown', onPointerDown, {
+        passive: true,
+        capture: true
       });
-      renderer.domElement.addEventListener('pointermove', onPointerMove, {
-        passive: true
+      window.addEventListener('pointermove', onPointerMove, {
+        passive: true,
+        capture: true
       });
       let raf = 0;
       const animate = () => {
@@ -651,6 +657,8 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
     }
     prevConfigRef.current = cfg;
     return () => {
+      // window.removeEventListener('pointerdown', onPointerDown, true);
+      // window.removeEventListener('pointermove', onPointerMove, true);
       if (threeRef.current && mustReinit) return;
       if (!threeRef.current) return;
       const t = threeRef.current;

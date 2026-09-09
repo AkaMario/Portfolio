@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { Code2, Brush, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BookOpenSharp, Braces, Figma } from 'pixelarticons/react'
 
 const sections = [
-  { id: "experience", label: "Experience", Icon: GraduationCap },
-  { id: "projects", label: "Projects", Icon: Code2 },
-  { id: "designs", label: "Designs", Icon: Brush },
+  { id: "experience", label: "Experience", Icon: BookOpenSharp },
+  { id: "projects", label: "Projects", Icon: Braces },
+  { id: "designs", label: "Designs", Icon: Figma },
 ];
 
 export default function AsideNav() {
@@ -42,15 +43,15 @@ export default function AsideNav() {
 
   return (
     <>
-      <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4 bg-gray-700/55 backdrop-blur-md rounded-2xl p-3">
+      <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4 bg-gray-700/30 backdrop-blur-md rounded-l p-3">
         {sections.map(({ id, label, Icon }) => (
           <button
             key={id}
             onClick={() => scrollTo(id)}
             className={cn(
-              "p-3 rounded-xl transition-all duration-300",
+              "p-3 rounded-l transition-all duration-300",
               activeSection === id
-                ? "bg-blue-600 text-white scale-110"
+                ? "bg-gray-600 text-white scale-110"
                 : "text-gray-400 hover:text-white hover:bg-white/10"
             )}
             title={label}

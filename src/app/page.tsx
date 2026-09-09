@@ -1,7 +1,8 @@
 import TextType from "@/components/TextType";
 import PixelBlast from "@/components/PixelBlast";
 import ProjectCard from "@/components/ProjectCard";
-import { Github, Linkedin, Send } from "lucide-react";
+// import {  } from "lucide-react";
+import { Github, Linkedin, Send } from "pixelarticons/react";
 import { Button } from "@/components/Button";
 import TimeLine from "@/components/TimeLine";
 import { LogoLoop } from "@/components/LogoLoop";
@@ -90,7 +91,6 @@ export default function Home() {
           rippleSpeed={0.4}
           rippleThickness={0.12}
           rippleIntensityScale={1.5}
-          liquid={false}
           liquidStrength={0.12}
           liquidRadius={1.2}
           liquidWobbleSpeed={5}
@@ -144,31 +144,26 @@ export default function Home() {
               </div>
               <div className="flex flex-wrap items-center justify-start md:gap-8 sm:gap-6 gap-4">
                 <a href="https://github.com/AkaMario">
-                  <Button
-                    variant="circleOutline"
-                    size="lg"
-                    className="border-white-600 text-white-600 hover:bg-blue-600 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer rounded-full"
+                  <button
+                    className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-lime-500"
                   >
                     <Github className="w-6 h-6" />
-                  </Button>
+                  </button>
+
                 </a>
                 <a href="https://www.linkedin.com/in/mario-uparela-posada-18661632b/">
-                  <Button
-                    variant="circleOutline"
-                    size="lg"
-                    className="border-white-600 text-white-600 hover:bg-purple-500 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer rounded-full"
+                  <button
+                    className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-blue-500"
                   >
                     <Linkedin className="w-6 h-6" />
-                  </Button>
+                  </button>
                 </a>
                 <a href="mailto:mariouppo1@gmail.com?subject=Mario.Dev%20portafolio&body=Hola%2C%20vi%20tu%20portafolio%2C%20me%20interesa.">
-                  <Button
-                    variant="circleOutline"
-                    size="lg"
-                    className="border-white-600 text-white-600 hover:bg-green-500 hover:text-black bg-transparent hover:scale-105 transition-all duration-300 hover:rotate-2 cursor-pointer rounded-full"
+                  <button
+                    className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-red-500"
                   >
                     <Send className="w-6 h-6" />
-                  </Button>
+                  </button>
                 </a>
               </div>
             </section>
