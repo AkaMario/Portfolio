@@ -12,6 +12,19 @@ import { Github, ExternalLink } from "lucide-react";
 
 function ProjectCard() {
   const proyectos = [
+        {
+      titulo: "Emprender",
+      descripcion:
+        "I designed and developed Emprender, an Android point-of-sale app for managing catalogs, sales and operations across restaurants, rentals, retail, bulk sales and services, with local data storage and offline functionality.",
+      tecnologias: [
+        "React native",
+        "API",
+      ],
+      imagen: "/emprender.png",
+      video: undefined,
+      github: "https://github.com/AkaMario/Emprender-pos",
+      demo: "https://emprender-gratis.vercel.app/",
+    },
     {
       titulo: "Urbanest IA",
       descripcion:
@@ -50,25 +63,6 @@ function ProjectCard() {
       github: "https://github.com/AkaMario/Metodo-grafico",
       demo: "https://akamario.github.io/Metodo-grafico/",
     },
-    // {
-    //     titulo: 'POS Web System',
-    //     descripcion: 'Point of sale system to manage inventories, sales, and generate reports for small businesses using Local Storage.',
-    //     tecnologias: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Local Storage'],
-    //     imagen: './pos.png',
-    //     video: undefined,
-    //     github: 'https://github.com/AkaMario/MiniPOS',
-    //     demo: 'https://akamario.github.io/MiniPOS/',
-    // },
-
-    // {
-    //     titulo: "Search Film",
-    //     descripcion: "Developed and designed this website to search for movies and series with autoupdate using the TMDB API and React",
-    //     tecnologias: ["API", "React", "Git", "Tailwind CSS"],
-    //     imagen: "/SearchFilm.png",
-    //     video: undefined,
-    //     github: "https://github.com/AkaMario/SearchFilm/",
-    //     demo: "https://akamario.github.io/SearchFilm/",
-    // },
 
     {
       titulo: "DNAMYK",
