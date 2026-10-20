@@ -1,9 +1,11 @@
+"use client";
+
+import { useLanguage } from "@/components/LanguageProvider";
 import TextType from "@/components/TextType";
 import PixelBlast from "@/components/PixelBlast";
 import ProjectCard from "@/components/ProjectCard";
 // import {  } from "lucide-react";
 import { Github, Linkedin, Send } from "pixelarticons/react";
-import { Button } from "@/components/Button";
 import TimeLine from "@/components/TimeLine";
 import { LogoLoop } from "@/components/LogoLoop";
 import {
@@ -77,6 +79,7 @@ const techLogos = [
 ];
 
 export default function Home() {
+  const { language, t } = useLanguage();
   return (
     <div className="relative">
       <div className="fixed inset-0 -z-10 overflow-hidden">
@@ -113,10 +116,11 @@ export default function Home() {
                   <span className="text-white">Mario Uparela</span>
                   <br />
                   <TextType
+                    key={language}
                     text={[
-                      "Web developer",
-                      "UX/UI designer",
-                      "Full-Stack Engineer",
+                      t("Web developer", "Desarrollador web"),
+                      t("UX/UI designer", "Diseñador UX/UI"),
+                      t("Full-Stack Engineer", "Ingeniero Full-Stack"),
                     ]}
                     typingSpeed={75}
                     pauseDuration={2500}
@@ -136,32 +140,22 @@ export default function Home() {
             <section className="md:p-0 px-6 flex flex-col gap-6">
               <div className="md:w-full ">
                 <p className="text-white text-lg sm:text-sm md:text-lg md:w-full">
-                  Welcome to my portfolio! I&apos;m Mario, a passionate web
-                  developer and UX/UI designer dedicated to crafting exceptional
-                  digital experiences. Explore my projects and skills as you
-                  navigate through my work.
+                  {t("Welcome to my portfolio! I'm Mario, a passionate web developer and UX/UI designer dedicated to crafting exceptional digital experiences. Explore my projects and skills as you navigate through my work.", "¡Bienvenido a mi portafolio! Soy Mario, un desarrollador web y diseñador UX/UI apasionado por crear experiencias digitales excepcionales. Explora mis proyectos y habilidades a través de mi trabajo.")}
                 </p>
               </div>
               <div className="flex flex-wrap items-center justify-start md:gap-8 sm:gap-6 gap-4">
                 <a href="https://github.com/AkaMario">
-                  <button
-                    className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-lime-500"
-                  >
+                  <button className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-lime-500">
                     <Github className="w-6 h-6" />
                   </button>
-
                 </a>
                 <a href="https://www.linkedin.com/in/mario-uparela-posada-18661632b/">
-                  <button
-                    className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-blue-500"
-                  >
+                  <button className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-blue-500">
                     <Linkedin className="w-6 h-6" />
                   </button>
                 </a>
                 <a href="mailto:mariouppo1@gmail.com?subject=Mario.Dev%20portafolio&body=Hola%2C%20vi%20tu%20portafolio%2C%20me%20interesa.">
-                  <button
-                    className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-red-500"
-                  >
+                  <button className="px-3 py-3 font-mono font-bold text-black bg-gray-300 border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all hover:bg-red-500">
                     <Send className="w-6 h-6" />
                   </button>
                 </a>
@@ -172,34 +166,26 @@ export default function Home() {
           {/* Section de timeline */}
           <section
             id="experience"
-            className="w-full bg-black/40 rounded-2xl sm:hidden md:block mt-20 md:mt-20"
+            className="w-full min-w-0 mt-20 scroll-mt-24"
+            aria-label={t("Experience and education", "Experiencia y formación")}
           >
-            <div className="w-full h-full p-6 rounded-lg sm:w-full">
-              <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">
-                Experience & Education
-              </h2>
-              <p className="text-1xl mb-6 text-gray-500">
-                A timeline of my professional experience and educational
-                background.
-              </p>
-              <div>
-                <TimeLine />
-              </div>
+            <div className="w-full">
+              <TimeLine />
             </div>
           </section>
 
           {/* Section de proyectos */}
           <section
             id="projects"
-            className="w-full mt-8 bg-black/40 rounded-2xl"
+            className="w-full min-w-0 mt-8 scroll-mt-24"
           >
-            <div className="w-full h-full p-6 rounded-lg sm:w-full">
-              <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">
-                Projects
+            <div className="w-full px-4 sm:px-6">
+              <p className="mb-3 font-mono text-xs tracking-widest text-gray-400">{t("[ PROJECTS.DIR ]", "[ PROYECTOS.DIR ]")}</p>
+              <h2 className="mb-4 text-3xl font-bold text-gray-100 md:text-5xl">
+                {t("Projects", "Proyectos")}
               </h2>
-              <p className="text-1xl mb-6 text-gray-500">
-                Here are the projects I&apos;ve used to learn about a technology
-                or that I&apos;ve been paid to do.
+              <p className="mb-8 text-sm leading-relaxed text-gray-400">
+                {t("Here are the projects I've used to learn about a technology or that I've been paid to do.", "Estos son los proyectos que he desarrollado para aprender nuevas tecnologías o como parte de mi trabajo.")}
               </p>
               <div className="">
                 <ProjectCard />
@@ -226,7 +212,7 @@ export default function Home() {
                 scaleOnHover
                 fadeOut
                 fadeOutColor="#000000"
-                ariaLabel="Technology partners"
+                ariaLabel={t("Technologies I use", "Tecnologías que utilizo")}
               />
             </div>
           </section>
@@ -234,15 +220,15 @@ export default function Home() {
           {/* Section de desings */}
           <section
             id="designs"
-            className="w-full mt-20 md:mt-20 bg-black/40 rounded-2xl"
+            className="w-full min-w-0 mt-20 scroll-mt-24"
           >
-            <div className="w-full h-full p-6 rounded-lg sm:w-full">
-              <h2 className="text-3xl md:text-5xl sm:text-3xl font-bold text-gray-500 mb-4">
-                Designs
+            <div className="w-full px-4 sm:px-6">
+              <p className="mb-3 font-mono text-xs tracking-widest text-gray-400">{t("[ DESIGNS.DIR ]", "[ DISEÑOS.DIR ]")}</p>
+              <h2 className="mb-4 text-3xl font-bold text-gray-100 md:text-5xl">
+                {t("Designs", "Diseños")}
               </h2>
-              <p className="text-1xl mb-6 text-gray-500">
-                Here are the designs I&apos;ve created to showcase my creativity
-                and design skills.
+              <p className="mb-8 text-sm leading-relaxed text-gray-400">
+                {t("Here are the designs I've created to showcase my creativity and design skills.", "Estos son los diseños que he creado para mostrar mi creatividad y mis habilidades de diseño.")}
               </p>
               <div className="">
                 <DesignCard />
@@ -254,7 +240,7 @@ export default function Home() {
           <section>
             <footer>
               <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Mario Uparela. All rights reserved.
+                © {new Date().getFullYear()} Mario Uparela. {t("All rights reserved.", "Todos los derechos reservados.")}
               </p>
             </footer>
           </section>

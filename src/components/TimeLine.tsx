@@ -1,6 +1,8 @@
-'use client';
+"use client";
 
-import { type CSSProperties, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from "react";
+import { useLanguage } from "./LanguageProvider";
+import styles from "./TimeLine.module.css";
 
 interface TimelineItem {
   title: string;
@@ -10,164 +12,132 @@ interface TimelineItem {
   type: 'work' | 'education';
 }
 
-const timelineData: TimelineItem[] = [
+export default function TimeLine() {
+  const { t } = useLanguage();
+  const timelineData: TimelineItem[] = [
   {
-    title: 'Web Developer in fundacion universitaria Tecnologico Comfenalco',
-    subtitle: 'intern',
-    description: 'I have worked as a project leader and software architect for the university, integrating new technologies and development approaches to improve the efficiency and quality of the institutions technology projects.',
+    title: t("Web Developer in fundacion universitaria Tecnologico Comfenalco", "Desarrollador web en la Fundación Universitaria Tecnológico Comfenalco"),
+    subtitle: t("intern", "Practicante"),
+    description: t("I have worked as a project leader and software architect for the university, integrating new technologies and development approaches to improve the efficiency and quality of the institutions technology projects.", "He trabajado como líder de proyectos y arquitecto de software para la universidad, integrando nuevas tecnologías y enfoques de desarrollo para mejorar la eficiencia y la calidad de sus proyectos tecnológicos."),
     date: '2026 - Present',
     type: 'work',
 
   },
   {
-    title: 'Web Developer and Designer',
+    title: t("Web Developer and Designer", "Desarrollador web y diseñador"),
     subtitle: 'DNAMYK',
-    description: 'web development and design projects',
+    description: t("web development and design projects", "Proyectos de desarrollo web y diseño"),
     date: '2025 - Present',
     type: 'work',
   },
   {
-    title: 'Systems Engineering',
-    subtitle: 'University foundation Tecnologico Comfenalco',
-    description: 'in progress',
+    title: t("Systems Engineering", "Ingeniería de Sistemas"),
+    subtitle: t("University foundation Tecnologico Comfenalco", "Fundación Universitaria Tecnológico Comfenalco"),
+    description: t("in progress", "En curso"),
     date: '2025 - Present',
     type: 'education',
   },
   {
-    title: 'Implementation apprentice',
+    title: t("Implementation apprentice", "Aprendiz de implementación"),
     subtitle: 'ESTELA',
-    description: 'My university internship, I learned technology project management. I focused on process automation and improving operational efficiency.',
+    description: t("My university internship, I learned technology project management. I focused on process automation and improving operational efficiency.", "Durante mis prácticas universitarias aprendí a gestionar proyectos tecnológicos. Me enfoqué en automatizar procesos y mejorar la eficiencia operativa."),
     date: '2024 - 2024',
     type: 'work',
   },
   {
-    title: 'Systems Assistant',
+    title: t("Systems Assistant", "Asistente de sistemas"),
     subtitle: 'CITUCAR',
-    description: 'My first formal job in the systems area was providing training and maintenance on computer equipment, as well as automating repetitive tasks.',
+    description: t("My first formal job in the systems area was providing training and maintenance on computer equipment, as well as automating repetitive tasks.", "En mi primer empleo formal en el área de sistemas brindé capacitación y mantenimiento de equipos de cómputo, además de automatizar tareas repetitivas."),
     date: '2022 - 2022',
     type: 'work',
   },
   {
-    title: 'Software Development Technologist',
-    subtitle: 'University foundation Tecnologico Comfenalco',
-    description: 'Completed',
+    title: t("Software Development Technologist", "Tecnólogo en Desarrollo de Software"),
+    subtitle: t("University foundation Tecnologico Comfenalco", "Fundación Universitaria Tecnológico Comfenalco"),
+    description: t("Completed", "Finalizado"),
     date: '2022 - 2024',
     type: 'education',
   },
 ];
 
-export default function TimeLine() {
-  const itemCount = timelineData.length;
-  const timelineStyle = {
-    '--timeline-items': itemCount,
-  } as CSSProperties;
-
-  const [visibleItems, setVisibleItems] = useState<Set<number>>(() => new Set());
-  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const roadmapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const currentItems = itemsRef.current.slice(0, itemCount);
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+    if (
+      !('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) return;
 
-          const index = itemsRef.current.findIndex((el) => el === entry.target);
-          if (index === -1) return;
+    const stations = roadmapRef.current?.querySelectorAll<HTMLElement>('li');
+    if (!stations) return;
 
-          setVisibleItems((prev) => {
-            if (prev.has(index)) return prev;
-            const next = new Set(prev);
-            next.add(index);
-            return next;
-          });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).dataset.reveal = 'visible';
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -32px 0px' });
 
-          obs.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0,
-      }
-    );
-
-    currentItems.forEach((el) => {
-      if (el) observer.observe(el);
+    stations.forEach((station) => {
+      station.dataset.reveal = 'pending';
+      observer.observe(station);
     });
 
-    return () => observer.disconnect();
-  }, [itemCount]);
+    return () => {
+      observer.disconnect();
+      stations.forEach((station) => delete station.dataset.reveal);
+    };
+  }, []);
 
   return (
-    <section className="py-12 sm:py-16 px-3 sm:px-4 pb-32">
-      <div className="w-full max-w-3xl lg:max-w-4xl mx-auto">
-        <div
-          className="relative px-2 sm:px-0 min-h-[calc(var(--timeline-items)*10rem)] sm:min-h-[calc(var(--timeline-items)*12rem)]"
-          style={timelineStyle}
-        >
-          {/* Vertical line - Desktop */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-linear-to-b from-gray-600 to-gray-900 transform -translate-x-1/2 hidden sm:block" />
+    <div ref={roadmapRef} className={styles.roadmap}>
 
-          {/* Vertical line - Mobile */}
-          <div className="absolute left-3 sm:hidden top-0 bottom-0 w-0.5 bg-linear-to-b from-gray-600 to-gray-900" />
-
-          {/* Timeline items */}
-          <div className="space-y-8 sm:space-y-12 lg:space-y-16">
-            {timelineData.map((item, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  itemsRef.current[index] = el;
-                }}
-                className={`transform transition-all duration-700 ${
-                  visibleItems.has(index)
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div
-                  className={`flex flex-col sm:flex-row sm:items-center ${
-                    index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
-                  }`}
-                >
-                  {/* Content */}
-                  <div className="w-full sm:w-1/2 pl-8 sm:pl-0 sm:px-4 lg:px-8">
-                    <div className="bg-black border border-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold uppercase tracking-wide text-gray-300 bg-gray-800 px-2.5 py-1 rounded">
-                          {item.type === 'work' ? 'Work' : 'Education'}
-                        </span>
-                        <span className="text-xs text-gray-500">{item.date}</span>
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-100 mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-gray-400 font-medium mb-2">
-                        {item.subtitle}
-                      </p>
-                      <p className="text-sm text-gray-500 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Center dot - Desktop */}
-                  <div className="hidden sm:flex sm:w-12 sm:justify-center sm:items-center absolute left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="w-5 h-5 bg-black border-2 border-gray-400 rounded-full shadow-md" />
-                  </div>
-
-                  {/* Center dot - Mobile */}
-                  <div className="absolute left-0 top-5 sm:hidden">
-                    <div className="w-4 h-4 bg-black border-2 border-gray-400 rounded-full shadow-md relative left-1" />
-                  </div>
-
-                  {/* Spacer for desktop */}
-                  <div className="hidden sm:block sm:w-1/2" />
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className={styles.map}>
+        <div className={styles.mapLabel}>
         </div>
+
+        <ol className={styles.stations} aria-label={t("Experience and education, most recent first", "Experiencia y formación, de la más reciente a la más antigua")}>
+          {timelineData.map((item, index) => (
+            <li
+              key={index}
+              className={`${styles.station} ${item.type === 'education' ? styles.education : ''}`}
+            >
+              <span className={styles.node} aria-hidden="true">
+                {String(timelineData.length - index).padStart(2, '0')}
+              </span>
+              <article className={styles.card}>
+                <div className={styles.windowBar}>
+                  <span className={styles.windowName}>
+                    <span className={styles.windowIcon} aria-hidden="true" />
+                    {item.type === 'work' ? t("experience", "experiencia") : t("education", "formación")}_{String(timelineData.length - index).padStart(2, '0')}.exe
+                  </span>
+                  <span className={styles.windowControls} aria-hidden="true">
+                    <span>_</span><span>□</span><span>×</span>
+                  </span>
+                </div>
+                <div className={styles.windowBody}>
+                <div className={styles.cardMeta}>
+                  <span className={styles.category}>
+                    {item.type === 'work' ? t("WORK", "TRABAJO") : t("EDUCATION", "FORMACIÓN")}
+                  </span>
+                  <span className={styles.date}>{item.date.replace("Present", t("Present", "Actualidad"))}</span>
+                </div>
+                <h3 className={styles.title}>{item.title}</h3>
+                <p className={styles.subtitle}>{item.subtitle}</p>
+                <p className={styles.description}>{item.description}</p>
+                <div className={styles.cardFooter}>
+                  <span>{t("CHECKPOINT", "ETAPA")} {String(timelineData.length - index).padStart(2, '0')}</span>
+                  <span className={styles.status}>
+                    {item.date.includes('Present') ? t("IN PROGRESS", "EN CURSO") : t("COMPLETED", "FINALIZADO")}
+                  </span>
+                </div>
+                </div>
+              </article>
+            </li>
+          ))}
+        </ol>
       </div>
-    </section>
+    </div>
   );
 }

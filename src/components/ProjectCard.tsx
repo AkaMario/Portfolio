@@ -1,21 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/Button";
-import { Github, ExternalLink } from "lucide-react";
+"use client";
+
+import { useLanguage } from "./LanguageProvider";
+import PortfolioWindowCard from "./PortfolioWindowCard";
 
 function ProjectCard() {
+  const { t } = useLanguage();
   const proyectos = [
         {
       titulo: "Emprender",
       descripcion:
-        "I designed and developed Emprender, an Android point-of-sale app for managing catalogs, sales and operations across restaurants, rentals, retail, bulk sales and services, with local data storage and offline functionality.",
+        t("I designed and developed Emprender, an Android point-of-sale app for managing catalogs, sales and operations across restaurants, rentals, retail, bulk sales and services, with local data storage and offline functionality.", "Diseñé y desarrollé Emprender, una aplicación de punto de venta para Android que permite gestionar catálogos, ventas y operaciones de restaurantes, alquileres, comercios, ventas al por mayor y servicios, con almacenamiento local y funcionamiento sin conexión."),
       tecnologias: [
         "React native",
         "API",
@@ -28,7 +22,7 @@ function ProjectCard() {
     {
       titulo: "Urbanest IA",
       descripcion:
-        "Development and design of UrbanestIA, a Colombian proptech platform that uses artificial intelligence to optimize the search, analysis and comparison of real estate investments.",
+        t("Development and design of UrbanestIA, a Colombian proptech platform that uses artificial intelligence to optimize the search, analysis and comparison of real estate investments.", "Desarrollo y diseño de UrbanestIA, una plataforma inmobiliaria colombiana que utiliza inteligencia artificial para optimizar la búsqueda, el análisis y la comparación de inversiones inmobiliarias."),
       tecnologias: [
         "React",
         "API",
@@ -46,7 +40,7 @@ function ProjectCard() {
     {
       titulo: "LexBattle",
       descripcion:
-        "LexBattle is a real-time word battle game where players race against a bomb by entering words that match the current letter and category. Play solo or compete online until only one player remains.",
+        t("LexBattle is a real-time word battle game where players race against a bomb by entering words that match the current letter and category. Play solo or compete online until only one player remains.", "LexBattle es un juego de batallas de palabras en tiempo real: los jugadores compiten contra una bomba escribiendo palabras que coincidan con la letra y categoría actuales. Juega en solitario o compite en línea hasta que solo quede un jugador."),
       tecnologias: ["React", "TypeScript", "Tailwind CSS", "Supabase"],
       imagen: "/Lexbattle.png",
       video: undefined,
@@ -54,9 +48,9 @@ function ProjectCard() {
       demo: "https://akamario.github.io/LexBattle/",
     },
     {
-      titulo: "Graphing method calculator",
+      titulo: t("Graphing method calculator", "Calculadora del método gráfico"),
       descripcion:
-        "Calculator and graphing tool used in operations research to solve linear equations.",
+        t("Calculator and graphing tool used in operations research to solve linear equations.", "Calculadora y herramienta gráfica utilizada en investigación de operaciones para resolver ecuaciones lineales."),
       tecnologias: ["React", "TypeScript", "Tailwind CSS", "Math"],
       imagen: "/Metodo-grafico.png",
       video: undefined,
@@ -67,7 +61,7 @@ function ProjectCard() {
     {
       titulo: "DNAMYK",
       descripcion:
-        "Developed and designed this landing page for a growing Colombian technology services startup that offers software development, IT consulting, and digital transformation services.",
+        t("Developed and designed this landing page for a growing Colombian technology services startup that offers software development, IT consulting, and digital transformation services.", "Desarrollé y diseñé esta página de presentación para una empresa emergente colombiana que ofrece desarrollo de software, consultoría informática y transformación digital."),
       tecnologias: ["Astro", "Figma", "Git", "Tailwind CSS"],
       imagen: "/dnamyk.png",
       video: undefined,
@@ -76,8 +70,8 @@ function ProjectCard() {
     },
 
     // {
-    //     titulo: "Rediseño de Landing Page Regace Lang",
-    //     descripcion: "Rediseño de la landing page de Regace Lang, es una empresa tecnológica internacional dedicada a entrenar, evaluar y mejorar modelos de IA",
+    //     titulo: t("Regace Lang landing page redesign", "Rediseño de la página de Regace Lang"),
+    //     descripcion: t("Landing page redesign for Regace Lang, an international technology company dedicated to training, evaluating, and improving AI models.", "Rediseño de la página de Regace Lang, una empresa tecnológica internacional dedicada a entrenar, evaluar y mejorar modelos de IA."),
     //     tecnologias: ["Figma"],
     //     imagen: '/RegaceLang.png',
     //     video: undefined, // ejemplo de video
@@ -87,65 +81,19 @@ function ProjectCard() {
   ];
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+    <div className="grid min-w-0 grid-cols-1 gap-8 md:grid-cols-2">
       {proyectos.map((proyecto, index) => (
-        <Card
-          className="bg-black gray-950 border-gray-950 hover:border-gray-400 transition-all hover:shadow-gray-400 duration-300 backdrop-blur-sm"
-          key={index}
-        >
-          <div className="relative overflow-hidden">
-            <img
-              src={proyecto.imagen || "/placeholder.svg"}
-              alt={proyecto.titulo}
-              className="w-full h-48 object-cover transition-transform duration-300 rounded-t-lg"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-black/600 to-transparent" />
-          </div>
-          <CardHeader>
-            <CardTitle className="text-white">{proyecto.titulo}</CardTitle>
-            <CardDescription className="text-gray-300">
-              {proyecto.descripcion}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {proyecto.tecnologias.map((tech, i) => (
-                <Badge
-                  key={i}
-                  variant="secondary"
-                  className="bg-gray-600/50 text-gray-300"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-            <div className="justify-center flex gap-2">
-              <a
-                href={proyecto.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="border-gray-400 text-gray-400 bg-transparent hover:cursor-pointer hover:scale-105 transition-all duration-300 hover:border-white hover:text-white "
-                >
-                  <Github className="w-4 h-4 mr-2" />
-                  Código
-                </Button>
-              </a>
-              <a href={proyecto.demo} target="_blank" rel="noopener noreferrer">
-                <Button
-                  size="sm"
-                  className="bg-linear-to-r from-blue-950 to-blue-950 hover:cursor-pointer hover:scale-105 transition-all duration-300"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Demo
-                </Button>
-              </a>
-            </div>
-          </CardContent>
-        </Card>
+        <PortfolioWindowCard
+          key={proyecto.titulo}
+          title={proyecto.titulo}
+          description={proyecto.descripcion}
+          image={proyecto.imagen}
+          technologies={proyecto.tecnologias}
+          demo={proyecto.demo}
+          github={proyecto.github}
+          kind="project"
+          index={index}
+        />
       ))}
     </div>
   );
