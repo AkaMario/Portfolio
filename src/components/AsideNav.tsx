@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Mail } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
 import { cn } from "@/lib/utils";
 import { BookOpenSharp, Braces, Figma } from 'pixelarticons/react'
@@ -9,11 +10,12 @@ const sections = [
   { id: "experience", label: "Experience", Icon: BookOpenSharp },
   { id: "projects", label: "Projects", Icon: Braces },
   { id: "designs", label: "Designs", Icon: Figma },
+  { id: "contact", label: "Contact", Icon: Mail },
 ];
 
 export default function AsideNav() {
   const { t } = useLanguage();
-  const labelFor = (id: string, label: string) => t(label, ({ experience: "Experiencia", projects: "Proyectos", designs: "Diseños" })[id as "experience" | "projects" | "designs"]);
+  const labelFor = (id: string, label: string) => t(label, ({ experience: "Experiencia", projects: "Proyectos", designs: "Diseños", contact: "Contacto" })[id as "experience" | "projects" | "designs" | "contact"]);
   const [activeSection, setActiveSection] = useState("");
   const mobileNavRef = useRef<HTMLElement>(null);
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/components/LanguageProvider";
+import RetroWorkstation from "@/components/RetroWorkstation";
 import TextType from "@/components/TextType";
 import PixelBlast from "@/components/PixelBlast";
 import ProjectCard from "@/components/ProjectCard";
@@ -26,6 +27,7 @@ import {
   SiMongodb,
   SiLinux,
 } from "react-icons/si";
+import ContactSection from "@/components/ContactSection";
 import DesignCard from "@/components/DesingCard";
 
 export const AzureIcon = () => (
@@ -106,15 +108,15 @@ export default function Home() {
       <div className="flex h-full items-center justify-center font-sans md:px-32">
         <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16sm:items-start gap-7 pb-24">
           {/* Section de titulo y botones */}
-          <section>
-            <section className="w-full flex flex-col items-center sm:items-start">
-              <div className="flex flex-col gap-6 items-start sm:w-full md:w-115">
-                <div className="text-4xl font-bold text-blue-600 sm:text-4xl md:text-5xl">
+          <section className="w-full">
+            <div className="grid min-w-0 items-center gap-4 px-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-2 md:px-0">
+            <section className="w-full min-w-0 flex flex-col items-start">
+              <div className="flex min-w-0 flex-col gap-6 items-start w-full">
+                <div className="w-full space-y-1 text-[clamp(2rem,9vw,2.5rem)] font-bold leading-[1.15] tracking-tight text-blue-600 sm:text-5xl">
                   <p>
                     Print<span className="text-white">(&apos;</span>
                   </p>
-                  <span className="text-white">Mario Uparela</span>
-                  <br />
+                  <p className="text-white">Mario Uparela</p>
                   <TextType
                     key={language}
                     text={[
@@ -128,19 +130,22 @@ export default function Home() {
                     cursorCharacter="|"
                     deletingSpeed={50}
                     cursorBlinkDuration={0.5}
-                    className="text-4xl font-bold text-white sm:text-4xl md:text-5xl"
+                    className="min-h-[2.3em] text-white lg:min-h-[1.15em]"
                   />
-                  <br />
                   <p className="text-white">&apos;)</p>
                 </div>
               </div>
 
-              <div className="mt-20 flex flex-wrap items-center justify-center md:gap-22 sm:gap-6 gap-4"></div>
             </section>
-            <section className="md:p-0 px-6 flex flex-col gap-6">
+            <RetroWorkstation />
+            </div>
+            <section className="mt-10 md:p-0 px-6 flex flex-col gap-6">
               <div className="md:w-full ">
                 <p className="text-white text-lg sm:text-sm md:text-lg md:w-full">
-                  {t("Welcome to my portfolio! I'm Mario, a passionate web developer and UX/UI designer dedicated to crafting exceptional digital experiences. Explore my projects and skills as you navigate through my work.", "¡Bienvenido a mi portafolio! Soy Mario, un desarrollador web y diseñador UX/UI apasionado por crear experiencias digitales excepcionales. Explora mis proyectos y habilidades a través de mi trabajo.")}
+                  {t(
+                    "Welcome to my portfolio! I'm Mario, a passionate web developer and UX/UI designer dedicated to crafting exceptional digital experiences. Explore my projects and skills as you navigate through my work.",
+                    "¡Bienvenido a mi portafolio! Soy Mario, un desarrollador web y diseñador UX/UI apasionado por crear experiencias digitales excepcionales. Explora mis proyectos y habilidades a través de mi trabajo.",
+                  )}
                 </p>
               </div>
               <div className="flex flex-wrap items-center justify-start md:gap-8 sm:gap-6 gap-4">
@@ -167,7 +172,10 @@ export default function Home() {
           <section
             id="experience"
             className="w-full min-w-0 mt-20 scroll-mt-24"
-            aria-label={t("Experience and education", "Experiencia y formación")}
+            aria-label={t(
+              "Experience and education",
+              "Experiencia y formación",
+            )}
           >
             <div className="w-full">
               <TimeLine />
@@ -175,17 +183,17 @@ export default function Home() {
           </section>
 
           {/* Section de proyectos */}
-          <section
-            id="projects"
-            className="w-full min-w-0 mt-8 scroll-mt-24"
-          >
+          <section id="projects" className="w-full min-w-0 mt-8 scroll-mt-24">
             <div className="w-full px-4 sm:px-6">
-              <p className="mb-3 font-mono text-xs tracking-widest text-gray-400">{t("[ PROJECTS.DIR ]", "[ PROYECTOS.DIR ]")}</p>
+              {/* <p className="mb-3 font-mono text-xs tracking-widest text-gray-400">{t("[ PROJECTS.DIR ]", "[ PROYECTOS.DIR ]")}</p> */}
               <h2 className="mb-4 text-3xl font-bold text-gray-100 md:text-5xl">
                 {t("Projects", "Proyectos")}
               </h2>
               <p className="mb-8 text-sm leading-relaxed text-gray-400">
-                {t("Here are the projects I've used to learn about a technology or that I've been paid to do.", "Estos son los proyectos que he desarrollado para aprender nuevas tecnologías o como parte de mi trabajo.")}
+                {t(
+                  "Built to be used. Explore the latest release or try something new.",
+                  "Creados para usarse. Explora el último proyecto o prueba algo nuevo.",
+                )}
               </p>
               <div className="">
                 <ProjectCard />
@@ -218,17 +226,17 @@ export default function Home() {
           </section>
 
           {/* Section de desings */}
-          <section
-            id="designs"
-            className="w-full min-w-0 mt-20 scroll-mt-24"
-          >
+          <section id="designs" className="w-full min-w-0 mt-20 scroll-mt-24">
             <div className="w-full px-4 sm:px-6">
-              <p className="mb-3 font-mono text-xs tracking-widest text-gray-400">{t("[ DESIGNS.DIR ]", "[ DISEÑOS.DIR ]")}</p>
+              {/* <p className="mb-3 font-mono text-xs tracking-widest text-gray-400">{t("[ DESIGNS.DIR ]", "[ DISEÑOS.DIR ]")}</p> */}
               <h2 className="mb-4 text-3xl font-bold text-gray-100 md:text-5xl">
                 {t("Designs", "Diseños")}
               </h2>
               <p className="mb-8 text-sm leading-relaxed text-gray-400">
-                {t("Here are the designs I've created to showcase my creativity and design skills.", "Estos son los diseños que he creado para mostrar mi creatividad y mis habilidades de diseño.")}
+                {t(
+                  "Swipe through the designs and open a prototype to explore it yourself.",
+                  "Desliza para descubrir los diseños y abre un prototipo para explorarlo.",
+                )}
               </p>
               <div className="">
                 <DesignCard />
@@ -236,11 +244,14 @@ export default function Home() {
             </div>
           </section>
 
+          <ContactSection />
+
           {/* Section de footer */}
           <section>
             <footer>
               <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Mario Uparela. {t("All rights reserved.", "Todos los derechos reservados.")}
+                © {new Date().getFullYear()} Mario Uparela.{" "}
+                {t("All rights reserved.", "Todos los derechos reservados.")}
               </p>
             </footer>
           </section>

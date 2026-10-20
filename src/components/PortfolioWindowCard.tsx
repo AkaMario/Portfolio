@@ -12,29 +12,18 @@ interface PortfolioWindowCardProps {
   technologies: string[];
   demo: string;
   github?: string;
-  index: number;
+  actionLabel?: string;
+  featured?: boolean;
   kind: "project" | "design";
 }
 
 export default function PortfolioWindowCard({
-  title, description, image, technologies, demo, github, index, kind,
+  title, description, image, technologies, demo, github, kind, actionLabel, featured = false,
 }: PortfolioWindowCardProps) {
   const { t } = useLanguage();
   return (
-    <article className={`${styles.window} ${kind === "design" ? styles.design : ""}`}>
-      <div className={styles.titleBar}>
-        <span className={styles.fileName}>
-          <span className={styles.windowIcon} aria-hidden="true" />
-          {kind === "design" ? t("design", "diseño") : t("project", "proyecto")}_{String(index + 1).padStart(2, "0")}.{kind === "design" ? "fig" : "exe"}
-        </span>
-        <span className={styles.controls} aria-hidden="true">
-          <span>_</span><span>□</span><span>×</span>
-        </span>
-      </div>
-      <div className={styles.menuBar}>
-        {/* <span>{kind === "design" ? t("DESIGN PREVIEW", "VISTA DEL DISEÑO") : t("PROJECT PREVIEW", "VISTA DEL PROYECTO")}</span>
-        <span aria-hidden="true">[ {String(index + 1).padStart(2, "0")} ]</span> */}
-      </div>
+    <article className={`${styles.window} ${featured ? styles.featured : ""}`}>
+      {featured && <p className={styles.featuredLabel}><span aria-hidden="true">★</span> {t("LATEST PROJECT", "PROYECTO MÁS RECIENTE")}</p>}
       <div className={styles.preview}>
         <img src={image} alt={title} loading="lazy" />
       </div>
@@ -52,15 +41,11 @@ export default function PortfolioWindowCard({
             </a>
           )}
           <a className={`${styles.button} ${styles.primary}`} href={demo} target="_blank" rel="noopener noreferrer">
-            <ExternalLink size={14} aria-hidden="true" /> {kind === "design" ? t("View design", "Ver diseño") : "Demo"}
+            <ExternalLink size={14} aria-hidden="true" /> {actionLabel ?? (kind === "design" ? t("Explore prototype", "Explora el prototipo") : t("Try it", "Pruébalo"))}
             <span className={styles.srOnly}> — {title} ({t("opens in a new tab", "se abre en una nueva pestaña")})</span>
           </a>
         </div>
       </div>
-      {/* <div className={styles.statusBar}>
-        <span><span aria-hidden="true">■ </span>{kind === "design" ? t("INTERFACE DESIGN", "DISEÑO DE INTERFACES") : t("DEVELOPMENT", "DESARROLLO")}</span>
-        <span aria-hidden="true">▤</span>
-      </div> */}
     </article>
   );
 }
